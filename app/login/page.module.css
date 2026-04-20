@@ -1,0 +1,35 @@
+.page {
+  display: grid;
+  gap: 1rem;
+  max-width: 48rem;
+}
+
+.hero {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.notice {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  border-radius: 1rem;
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--warning);
+  line-height: 1.6;
+}
+
+.stack {
+  display: grid;
+  gap: 1rem;
+}

@@ -22,6 +22,18 @@ That means AI-assisted changes should:
 - treat **preview deployments** as the preferred validation environment, and
 - require explicit human approval before **production** deployment decisions.
 
+## Platform assumptions
+
+The current application baseline assumes:
+
+- **Supabase Auth** for authentication,
+- **Google sign-in** as the only enabled auth provider for now,
+- **Supabase Postgres** for application data,
+- **Drizzle ORM + migrations** for schema management, and
+- **Vercel** for web hosting and deployment.
+
+Changes that alter these foundations should be treated as architectural changes and reviewed carefully.
+
 ## Change risk levels
 
 | Level  | Examples                                                                                                              | Policy                                                                       |
@@ -47,6 +59,14 @@ That means AI-assisted changes should:
 - Prefer validating meaningful changes in a Vercel preview deployment before production rollout.
 - New cron jobs, storage services, analytics, or marketplace integrations should be treated as higher-risk changes and reviewed by a human.
 
+## Supabase-specific guardrails
+
+- Keep Supabase service-role credentials server-side only and do not send them to browser code.
+- Treat auth, RLS policies, and database migrations as security-sensitive changes.
+- New user-data tables should enable **Row Level Security** before they are considered ready.
+- Prefer least-privilege policies and return only the fields the caller actually needs.
+- Keep Google OAuth configuration, redirect URLs, and Supabase environment settings aligned across local, preview, and production environments.
+
 ## Required workflow for AI-assisted changes
 
 1. Understand the task and relevant repo docs.
@@ -63,5 +83,6 @@ Before merging AI-assisted work, a human reviewer should confirm:
 - no secrets or unsafe patterns were introduced,
 - the implementation is readable and maintainable,
 - lint, type-check, and build pass,
-- Vercel deployment expectations are still respected, and
+- Vercel deployment expectations are still respected,
+- Supabase auth and RLS expectations are still respected, and
 - docs still reflect the current state of the project.

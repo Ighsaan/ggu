@@ -1,55 +1,59 @@
 # GGU
 
-GGU is currently a **governance-ready Next.js starter project**. At this stage,
-it is not a finished product with domain-specific features yet; it is a clean
-foundation for building a web application with clear AI contribution rules,
-coding standards, and quality gates.
+GGU is now a **governance-first Next.js starter** that is pre-wired for:
 
-## What exists so far
+- **Supabase Auth** with **Google sign-in**
+- **Supabase Postgres**
+- **Drizzle ORM** and SQL migrations
+- **Vercel** hosting and deployment
 
-This repository currently includes:
+The repository is still an early foundation rather than a finished product, but the application layer, auth flow, database wiring, and setup documentation are now in place.
 
-- a simple **Next.js 16** web app using the **App Router**,
-- **TypeScript** with strict mode,
-- **ESLint** and **Prettier** for code quality and consistency,
-- an `AGENTS.md` file to guide AI coding agents,
-- project-level **AI governance** and **coding standards** docs,
-- a `Makefile` with a `precommit` target for local validation, and
-- a **GitHub Actions CI workflow** that validates formatting, linting, type safety, and build health.
-
-## Project direction right now
-
-The current purpose of the project is to provide a solid starting point for a
-future web application while keeping human oversight explicit and maintaining a
-clean baseline for AI-assisted development.
-
-## Hosting target
-
-This application is intended to be hosted on **Vercel**.
-
-Current governance assumptions:
-
-- preview deployments are the preferred place to validate meaningful changes,
-- production deployment decisions require human approval, and
-- secrets should be managed through Vercel environment variables, not committed files.
-
-## Tech stack
+## Current stack
 
 - Next.js 16
 - React 19
 - TypeScript
+- Supabase Auth (Google provider)
+- Supabase Postgres
+- Drizzle ORM + Drizzle Kit
 - ESLint
 - Prettier
 - GitHub Actions
 - Vercel for hosting and deployment
 
-## Governance and standards
+## What is already implemented
+
+- App Router project scaffold
+- shared UI component library primitives (`Button`, `ButtonLink`, `Card`, `Badge`)
+- Google sign-in route and callback flow using Supabase SSR helpers
+- session-refresh proxy for Next.js App Router
+- protected dashboard example
+- Drizzle schema and migration setup for Supabase Postgres
+- starter `profiles` table migration with RLS policies
+- `Makefile` with `make precommit`
+- AI governance, coding standards, and repo agent instructions
+
+## Important docs
 
 - Agent instructions: [`AGENTS.md`](./AGENTS.md)
-- AI governance policy: [`docs/AI-GOVERNANCE.md`](./docs/AI-GOVERNANCE.md)
+- AI governance: [`docs/AI-GOVERNANCE.md`](./docs/AI-GOVERNANCE.md)
 - Coding standards: [`docs/CODING-STANDARDS.md`](./docs/CODING-STANDARDS.md)
+- Supabase + Vercel setup guide: [`docs/SUPABASE-VERCEL-SETUP.md`](./docs/SUPABASE-VERCEL-SETUP.md)
 
-## Available scripts
+## Environment variables
+
+Copy `.env.example` to `.env.local` and fill in the real values.
+
+Main variables:
+
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `DATABASE_URL`
+- `DIRECT_URL`
+
+## Scripts
 
 ```bash
 npm run dev
@@ -59,6 +63,9 @@ npm run build
 npm run start
 npm run format
 npm run format:check
+npm run db:generate
+npm run db:migrate
+npm run db:studio
 ```
 
 ## Pre-commit workflow
@@ -76,24 +83,7 @@ This runs:
 - `npm run typecheck`
 - `npm run build`
 
-## Optional local AI tooling
-
-Vercel publishes an agent plugin that adds Vercel-focused skills, commands, and
-context for compatible coding-agent environments.
-
-Example install command for the Codex target:
-
-```bash
-npx plugins add vercel/vercel-plugin -t codex -s user
-```
-
-Important:
-
-- this is **local agent tooling**, not a dependency of this web app,
-- it does **not** get bundled into production, and
-- it belongs in the developer or agent environment, not in application runtime code.
-
-## Getting started
+## Local development
 
 1. Install dependencies:
 
@@ -101,17 +91,29 @@ Important:
    npm install
    ```
 
-2. Start the development server:
+2. Copy envs:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+3. Fill in your Supabase values.
+
+4. Apply the initial database migration:
+
+   ```bash
+   npm run db:migrate
+   ```
+
+5. Start the app:
 
    ```bash
    npm run dev
    ```
 
-3. Open [http://localhost:3000](http://localhost:3000).
+## Next recommended steps
 
-## Suggested next steps
-
-- define the actual product scope for GGU,
-- add real routes and user-facing features,
-- introduce data storage or authentication only when requirements are clear, and
-- keep governance docs aligned with the evolving project.
+- decide the first real domain data model beyond the starter `profiles` table,
+- add additional protected routes and business features,
+- define the production domain and Vercel project settings,
+- keep RLS policies aligned with every new user-data table.

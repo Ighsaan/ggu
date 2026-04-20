@@ -1,71 +1,86 @@
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { isDatabaseConfigured } from "@/db";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { getSessionUser } from "@/lib/supabase/user";
 import styles from "./page.module.css";
 
-const currentDeliverables = [
-  "A simple Next.js 16 App Router application scaffolded and customized for this repo.",
-  "AI governance guidance to keep human review, security, and accountability explicit.",
-  "Coding standards covering TypeScript, React, Next.js, styling, and validation expectations.",
-] as const;
+export default async function Home() {
+  const user = await getSessionUser();
+  const supabaseConfigured = isSupabaseConfigured();
+  const databaseConfigured = isDatabaseConfigured();
 
-const qualityGates = [
-  "ESLint for static analysis",
-  "TypeScript type-checking",
-  "Next.js production build validation",
-  "GitHub Actions CI for repeatable checks",
-] as const;
-
-const nextSteps = [
-  "Define the actual product goals for GGU.",
-  "Add routes, data models, and features based on confirmed requirements.",
-  "Expand test coverage once business logic becomes more complex.",
-] as const;
-
-export default function Home() {
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>GGU</p>
         <h1 className={styles.title}>
-          A simple, governance-ready Next.js web app starter.
+          Supabase auth, Postgres, Drizzle, and Vercel — ready to wire up.
         </h1>
         <p className={styles.description}>
-          This project currently provides a clean web foundation, a starter user
-          interface, and clear rules for both human and AI contributors.
+          This project now includes Google sign-in with Supabase Auth, a Drizzle
+          ORM database layer for Supabase Postgres, secure session handling for
+          the App Router, and deployment guidance for Vercel.
         </p>
-        <div className={styles.badges} aria-label="Project highlights">
-          <span className={styles.badge}>Next.js 16</span>
-          <span className={styles.badge}>React 19</span>
-          <span className={styles.badge}>TypeScript</span>
-          <span className={styles.badge}>AI Governance</span>
+        <div className={styles.actions}>
+          <ButtonLink href={user ? "/dashboard" : "/login"}>
+            {user ? "Open dashboard" : "Sign in with Google"}
+          </ButtonLink>
+          <ButtonLink href="/login" variant="secondary">
+            Review auth flow
+          </ButtonLink>
         </div>
       </section>
 
       <section className={styles.grid}>
-        <article className={styles.card}>
-          <h2>Current deliverables</h2>
-          <ul>
-            {currentDeliverables.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
+        <Card
+          title="Authentication"
+          description="Supabase Auth is set up for Google sign-in only."
+        >
+          <div className={styles.inline}>
+            <Badge tone={supabaseConfigured ? "success" : "warning"}>
+              {supabaseConfigured
+                ? "Supabase env detected"
+                : "Needs Supabase env"}
+            </Badge>
+          </div>
+          <p className={styles.bodyText}>
+            Server-side auth helpers, proxy session refresh, and an OAuth
+            callback route are all in place.
+          </p>
+        </Card>
 
-        <article className={styles.card}>
-          <h2>Quality gates</h2>
-          <ul>
-            {qualityGates.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
+        <Card
+          title="Database"
+          description="Supabase Postgres is wired through Drizzle ORM and migrations."
+        >
+          <div className={styles.inline}>
+            <Badge tone={databaseConfigured ? "success" : "warning"}>
+              {databaseConfigured
+                ? "Database env detected"
+                : "Needs DATABASE_URL"}
+            </Badge>
+          </div>
+          <ul className={styles.list}>
+            <li>Drizzle schema and migration config are ready.</li>
+            <li>A starter `profiles` table is included.</li>
+            <li>RLS policies are added in the initial SQL migration.</li>
           </ul>
-        </article>
+        </Card>
 
-        <article className={styles.card}>
-          <h2>Suggested next steps</h2>
-          <ul>
-            {nextSteps.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </article>
+        <Card
+          title="Hosting"
+          description="Vercel remains the intended hosting target."
+        >
+          <div className={styles.inline}>
+            <Badge tone="neutral">Vercel-ready</Badge>
+          </div>
+          <p className={styles.bodyText}>
+            The repo includes Vercel-specific setup guidance, preview-aware
+            callback handling, and environment variable instructions.
+          </p>
+        </Card>
       </section>
     </main>
   );

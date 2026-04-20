@@ -17,13 +17,15 @@ Read these before making non-trivial changes:
 1. `README.md`
 2. `docs/AI-GOVERNANCE.md`
 3. `docs/CODING-STANDARDS.md`
-4. Current Next.js documentation for the installed version (`node_modules/next/dist/docs/` or `https://nextjs.org/docs`) before making framework-specific assumptions.
+4. `docs/SUPABASE-VERCEL-SETUP.md`
+5. Current Next.js documentation for the installed version (`node_modules/next/dist/docs/` or `https://nextjs.org/docs`) before making framework-specific assumptions.
 
 ## Operating rules for agents
 
 - Human instructions override default preferences.
 - Prefer the smallest safe change that satisfies the request.
 - Assume the deployment target is Vercel and avoid unnecessary platform drift.
+- Assume the auth/database stack is Supabase Auth + Supabase Postgres + Drizzle unless a human says otherwise.
 - Use Server Components by default; add `"use client"` only when browser-only interactivity is required.
 - Keep TypeScript strict. Avoid `any`, `// @ts-ignore`, and non-null assertions unless clearly justified.
 - Prefer building pages from reusable UI library components instead of duplicating markup in route files.
@@ -31,6 +33,7 @@ Read these before making non-trivial changes:
 - Preserve accessibility with semantic HTML, keyboard support, and readable contrast.
 - Treat API and server-side code as security-sensitive: validate input, use safe database access patterns, and expose only necessary data.
 - Keep secrets server-side and use `NEXT_PUBLIC_` only for values intentionally exposed to the browser.
+- For Supabase-backed user data, keep Row Level Security enabled and write least-privilege policies.
 - Do not add dependencies unless the benefit is clear and the addition is documented.
 - Do not commit secrets, credentials, or environment-specific values.
 - Update documentation when behavior, workflow, or standards materially change.

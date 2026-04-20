@@ -49,7 +49,7 @@
 - Keep route segment names lowercase and filesystem-friendly.
 - Use the `@/*` import alias when it improves readability.
 
-## APIs and security
+## Data, auth, and security
 
 - Treat API routes, Route Handlers, Server Actions, and all server-side code as security-sensitive.
 - Validate and narrow all external input before using it.
@@ -59,6 +59,8 @@
 - Keep secrets on the server only and never pass them to client components or browser-exposed environment variables.
 - Prefer safe error handling that gives clients only the information they need while preserving useful server-side logs for debugging.
 - Consider abuse prevention, auditability, and rate limiting when APIs become public or sensitive.
+- For Supabase-backed tables, enable **Row Level Security** and keep policies least-privilege by default.
+- Auth flows must keep redirect URLs controlled and avoid open redirects.
 
 ## Dependencies
 

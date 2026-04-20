@@ -1,12 +1,15 @@
 :root {
   --background: #f4f7fb;
   --background-strong: #e5edf8;
-  --surface: rgba(255, 255, 255, 0.85);
+  --surface: rgba(255, 255, 255, 0.86);
   --text: #0f172a;
   --muted: #475569;
-  --border: rgba(148, 163, 184, 0.32);
-  --border-strong: rgba(59, 130, 246, 0.35);
+  --border: rgba(148, 163, 184, 0.3);
+  --border-strong: rgba(37, 99, 235, 0.3);
   --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --success: #15803d;
+  --warning: #b45309;
 }
 
 * {
@@ -48,7 +51,24 @@ a {
   text-decoration: none;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+main {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
 code,
 pre {
   font-family: var(--font-geist-mono), monospace;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.18);
 }
