@@ -23,6 +23,16 @@ The current purpose of the project is to provide a solid starting point for a
 future web application while keeping human oversight explicit and maintaining a
 clean baseline for AI-assisted development.
 
+## Hosting target
+
+This application is intended to be hosted on **Vercel**.
+
+Current governance assumptions:
+
+- preview deployments are the preferred place to validate meaningful changes,
+- production deployment decisions require human approval, and
+- secrets should be managed through Vercel environment variables, not committed files.
+
 ## Tech stack
 
 - Next.js 16
@@ -31,6 +41,7 @@ clean baseline for AI-assisted development.
 - ESLint
 - Prettier
 - GitHub Actions
+- Vercel for hosting and deployment
 
 ## Governance and standards
 
@@ -64,6 +75,23 @@ This runs:
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
+
+## Optional local AI tooling
+
+Vercel publishes an agent plugin that adds Vercel-focused skills, commands, and
+context for compatible coding-agent environments.
+
+Example install command for the Codex target:
+
+```bash
+npx plugins add vercel/vercel-plugin -t codex -s user
+```
+
+Important:
+
+- this is **local agent tooling**, not a dependency of this web app,
+- it does **not** get bundled into production, and
+- it belongs in the developer or agent environment, not in application runtime code.
 
 ## Getting started
 

@@ -23,12 +23,14 @@ Read these before making non-trivial changes:
 
 - Human instructions override default preferences.
 - Prefer the smallest safe change that satisfies the request.
+- Assume the deployment target is Vercel and avoid unnecessary platform drift.
 - Use Server Components by default; add `"use client"` only when browser-only interactivity is required.
 - Keep TypeScript strict. Avoid `any`, `// @ts-ignore`, and non-null assertions unless clearly justified.
 - Prefer building pages from reusable UI library components instead of duplicating markup in route files.
 - Extract repeated interface patterns into the shared component library.
 - Preserve accessibility with semantic HTML, keyboard support, and readable contrast.
 - Treat API and server-side code as security-sensitive: validate input, use safe database access patterns, and expose only necessary data.
+- Keep secrets server-side and use `NEXT_PUBLIC_` only for values intentionally exposed to the browser.
 - Do not add dependencies unless the benefit is clear and the addition is documented.
 - Do not commit secrets, credentials, or environment-specific values.
 - Update documentation when behavior, workflow, or standards materially change.
