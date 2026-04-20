@@ -13,7 +13,8 @@ This repository currently includes:
 - **TypeScript** with strict mode,
 - **ESLint** and **Prettier** for code quality and consistency,
 - an `AGENTS.md` file to guide AI coding agents,
-- project-level **AI governance** and **coding standards** docs, and
+- project-level **AI governance** and **coding standards** docs,
+- a `Makefile` with a `precommit` target for local validation, and
 - a **GitHub Actions CI workflow** that validates formatting, linting, type safety, and build health.
 
 ## Project direction right now
@@ -48,6 +49,21 @@ npm run start
 npm run format
 npm run format:check
 ```
+
+## Pre-commit workflow
+
+Before committing changes, run:
+
+```bash
+make precommit
+```
+
+This runs:
+
+- `npm run format`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
 
 ## Getting started
 

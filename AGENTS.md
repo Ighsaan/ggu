@@ -1,4 +1,5 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # AGENTS.md
 
 GGU is a governance-first Next.js App Router project. Keep the codebase small,
@@ -34,8 +35,13 @@ Read these before making non-trivial changes:
 
 ## Required checks before handoff
 
-Run these when the change can affect application behavior:
+Prefer this shortcut before committing changes:
 
+- `make precommit`
+
+That target runs:
+
+- `npm run format`
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`

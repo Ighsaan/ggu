@@ -74,8 +74,11 @@
 
 ## Validation
 
-Use these commands as the default project quality gates:
+Use `make precommit` before committing changes.
 
+That target runs these default quality gates:
+
+- `npm run format`
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
