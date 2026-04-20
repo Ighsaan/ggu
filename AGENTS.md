@@ -1,5 +1,4 @@
 <!-- BEGIN:nextjs-agent-rules -->
-
 # AGENTS.md
 
 GGU is a governance-first Next.js App Router project. Keep the codebase small,
@@ -25,7 +24,10 @@ Read these before making non-trivial changes:
 - Prefer the smallest safe change that satisfies the request.
 - Use Server Components by default; add `"use client"` only when browser-only interactivity is required.
 - Keep TypeScript strict. Avoid `any`, `// @ts-ignore`, and non-null assertions unless clearly justified.
+- Prefer building pages from reusable UI library components instead of duplicating markup in route files.
+- Extract repeated interface patterns into the shared component library.
 - Preserve accessibility with semantic HTML, keyboard support, and readable contrast.
+- Treat API and server-side code as security-sensitive: validate input, use safe database access patterns, and expose only necessary data.
 - Do not add dependencies unless the benefit is clear and the addition is documented.
 - Do not commit secrets, credentials, or environment-specific values.
 - Update documentation when behavior, workflow, or standards materially change.
