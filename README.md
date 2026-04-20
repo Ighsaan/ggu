@@ -40,6 +40,7 @@ The repository is still an early foundation rather than a finished product, but 
 - AI governance: [`docs/AI-GOVERNANCE.md`](./docs/AI-GOVERNANCE.md)
 - Coding standards: [`docs/CODING-STANDARDS.md`](./docs/CODING-STANDARDS.md)
 - Supabase + Vercel setup guide: [`docs/SUPABASE-VERCEL-SETUP.md`](./docs/SUPABASE-VERCEL-SETUP.md)
+- Architecture and infrastructure overview: [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md)
 
 ## Environment variables
 
