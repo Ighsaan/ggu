@@ -1,14 +1,49 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { ButtonLink } from "@/components/ui/ButtonLink";
 import { isDatabaseConfigured } from "@/db";
-import { signOutAction } from "@/lib/actions/auth";
 import { syncAppUserFromAuth } from "@/lib/data/users";
-import { getSessionUser, getUserDisplayName } from "@/lib/supabase/user";
+import { getSessionUser } from "@/lib/supabase/user";
 import styles from "./page.module.css";
 
-const navItems = ["Dashboard", "Discover", "Saved", "Activity", "Settings"];
-const heroTabs = ["Overview", "Collection", "Archive"];
+const visitedGames = [
+  {
+    title: "Legends",
+    image: "/placeholders/game-card-legends.svg",
+  },
+  {
+    title: "Overwatch 2",
+    image: "/placeholders/game-card-overwatch.svg",
+  },
+  {
+    title: "Arc Raiders",
+    image: "/placeholders/game-card-arc-raiders.svg",
+  },
+] as const;
+
+const trendingGames = [
+  {
+    title: "Legends",
+    image: "/placeholders/game-card-legends.svg",
+  },
+  {
+    title: "Overwatch 2",
+    image: "/placeholders/game-card-overwatch.svg",
+  },
+  {
+    title: "Dota 2",
+    image: "/placeholders/game-card-dota.svg",
+  },
+  {
+    title: "Arc Raiders",
+    image: "/placeholders/game-card-arc-raiders.svg",
+  },
+] as const;
+
+const footerLinks = [
+  "Contact Us",
+  "Terms & Conditions",
+  "Privacy Policy",
+  "Enquiries",
+] as const;
 
 export default async function DashboardPage() {
   const user = await getSessionUser();
@@ -22,148 +57,120 @@ export default async function DashboardPage() {
     }
   }
 
-  const displayName = user ? getUserDisplayName(user) : "Guest viewer";
-  const sessionState = user ? "Logged in" : "Not logged in";
-
   return (
     <main className={styles.page}>
-      <section className={styles.layout}>
+      <section className={styles.frame}>
         <aside className={styles.sidebar}>
-          <div className={styles.sidebarTop}>
-            <div className={styles.logo}>GG</div>
-            <p className={styles.brand}>GGU</p>
+          <div className={styles.brandBlock}>
+            <div className={styles.brandMark}>GGU</div>
+            <div className={styles.brandText}>
+              <span>GGU</span>
+              <span>GLOBAL GAME</span>
+            </div>
           </div>
 
-          <nav className={styles.nav} aria-label="Dashboard sections">
-            {navItems.map((item, index) => (
-              <a
-                key={item}
-                href={index === 0 ? "/dashboard" : "#"}
-                className={index === 0 ? styles.navItemActive : styles.navItem}
-              >
-                <span className={styles.navBullet} />
-                <span>{item}</span>
-              </a>
-            ))}
-          </nav>
+          <div className={styles.iconRail}>
+            <span className={styles.iconButton} />
+            <span className={styles.iconButtonActive} />
+            <span className={styles.iconButton} />
+            <span className={styles.iconButton} />
+          </div>
 
-          <div className={styles.sidebarFooter}>
-            <p className={styles.sidebarLabel}>Profile</p>
-            <p className={styles.sidebarName}>{displayName}</p>
-            <p className={styles.sidebarState}>{sessionState}</p>
+          <div className={styles.bottomRail}>
+            <span className={styles.iconButton} />
+            <span className={styles.iconButton} />
           </div>
         </aside>
 
-        <section className={styles.main}>
-          <section className={styles.hero}>
-            <div className={styles.heroTopBar}>
-              <div className={styles.heroTabs}>
-                {heroTabs.map((tab, index) => (
-                  <span
-                    key={tab}
-                    className={
-                      index === 0 ? styles.heroTabActive : styles.heroTab
-                    }
-                  >
-                    {tab}
-                  </span>
-                ))}
-              </div>
-
-              <div className={styles.profilePill}>
-                <span
-                  className={user ? styles.profileDotActive : styles.profileDot}
-                />
-                <span>{sessionState}</span>
-              </div>
+        <section className={styles.content}>
+          <section className={styles.heroSection}>
+            <div className={styles.heroTextBlock}>
+              <p className={styles.heroEyebrow}>GGU GLOBAL GAME</p>
+              <h1 className={styles.heroTitle}>LET THE DEVS KNOW!</h1>
             </div>
 
-            <div className={styles.heroBody}>
-              <div className={styles.heroCopyBlock}>
-                <p className={styles.eyebrow}>Dashboard</p>
-                <h1 className={styles.heroTitle}>Curated visual workspace</h1>
-                <p className={styles.heroText}>
-                  A stripped-back dashboard page that mirrors the reference
-                  layout, with only placeholder imagery standing in for missing
-                  assets.
-                </p>
-              </div>
-
-              <div className={styles.heroImageCard}>
-                <Image
-                  src="/placeholders/dashboard-hero.svg"
-                  alt="Portrait placeholder used in the hero area"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 28vw"
-                  className={styles.image}
-                />
-              </div>
+            <div className={styles.heroImageWrap}>
+              <Image
+                src="/placeholders/game-hero-poster.svg"
+                alt="Placeholder hero poster"
+                fill
+                priority
+                sizes="(max-width: 1000px) 100vw, 30vw"
+                className={styles.image}
+              />
             </div>
           </section>
 
-          <section className={styles.contentGrid}>
-            <article className={`${styles.card} ${styles.largeCard}`}>
-              <div className={styles.cardHeader}>
-                <div>
-                  <p className={styles.cardEyebrow}>Feature</p>
-                  <h2 className={styles.cardTitle}>Main gallery panel</h2>
+          <section className={styles.bottomSection}>
+            <section className={styles.leftColumn}>
+              <article className={styles.sectionCard}>
+                <h2 className={styles.sectionTitle}>Recently Visited</h2>
+                <div className={styles.visitedGrid}>
+                  {visitedGames.map((game) => (
+                    <article key={game.title} className={styles.visitCard}>
+                      <div className={styles.visitImageWrap}>
+                        <Image
+                          src={game.image}
+                          alt={`${game.title} placeholder image`}
+                          fill
+                          sizes="(max-width: 1000px) 33vw, 12vw"
+                          className={styles.image}
+                        />
+                      </div>
+                      <p className={styles.gameLabel}>{game.title}</p>
+                    </article>
+                  ))}
                 </div>
+              </article>
+
+              <article className={styles.sectionCard}>
+                <h2 className={styles.sectionTitle}>Top Trending Games</h2>
+                <div className={styles.trendingGrid}>
+                  {trendingGames.map((game) => (
+                    <article key={game.title} className={styles.trendingCard}>
+                      <div className={styles.trendingImageWrap}>
+                        <Image
+                          src={game.image}
+                          alt={`${game.title} trending placeholder image`}
+                          fill
+                          sizes="(max-width: 1000px) 25vw, 10vw"
+                          className={styles.image}
+                        />
+                      </div>
+                      <p className={styles.gameLabel}>{game.title}</p>
+                    </article>
+                  ))}
+                </div>
+              </article>
+            </section>
+
+            <aside className={styles.rightColumn}>
+              <div className={styles.tagRow}>
+                <span>Call Of Duty</span>
+                <span>Warzone</span>
+                <span>Battlefield 6</span>
               </div>
 
-              <div className={styles.largeImageWrap}>
-                <Image
-                  src="/placeholders/dashboard-secondary-one.svg"
-                  alt="Large placeholder image in the main gallery panel"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 44vw"
-                  className={styles.image}
-                />
-              </div>
-            </article>
-
-            <div className={styles.rightColumn}>
-              <article className={`${styles.card} ${styles.smallImageCard}`}>
-                <div className={styles.smallImageWrap}>
+              <div className={styles.featureCard}>
+                <div className={styles.featureImageWrap}>
                   <Image
-                    src="/placeholders/dashboard-secondary-two.svg"
-                    alt="Secondary placeholder image"
+                    src="/placeholders/game-feature-poster.svg"
+                    alt="Featured game placeholder poster"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 24vw"
+                    sizes="(max-width: 1000px) 100vw, 22vw"
                     className={styles.image}
                   />
                 </div>
-              </article>
+                <p className={styles.featureTitle}>Call Of Duty</p>
+                <p className={styles.featureSubtitle}>Warzone Battlefield 6</p>
+              </div>
 
-              <article className={`${styles.card} ${styles.infoCard}`}>
-                <div className={styles.infoCardTop}>
-                  <div>
-                    <p className={styles.cardEyebrow}>Account</p>
-                    <h2 className={styles.infoTitle}>{displayName}</h2>
-                  </div>
-                  <span className={styles.infoState}>{sessionState}</span>
-                </div>
-
-                <p className={styles.infoText}>
-                  {user
-                    ? "Signed in and ready."
-                    : "Public guest view is active."}
-                </p>
-
-                <div className={styles.infoActions}>
-                  <ButtonLink href="/login" variant="secondary">
-                    Open login
-                  </ButtonLink>
-                  {user ? (
-                    <form className={styles.inlineForm} action={signOutAction}>
-                      <Button type="submit" variant="subtle">
-                        Sign out
-                      </Button>
-                    </form>
-                  ) : null}
-                </div>
-              </article>
-            </div>
+              <footer className={styles.footerLinks}>
+                {footerLinks.map((link) => (
+                  <span key={link}>{link}</span>
+                ))}
+              </footer>
+            </aside>
           </section>
         </section>
       </section>
