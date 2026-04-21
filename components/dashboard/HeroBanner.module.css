@@ -5,7 +5,7 @@
   gap: 1rem;
   height: 100%;
   padding: 1.55rem 1.65rem;
-  border-radius: 1.8rem;
+  border-radius: 0;
   background: #131313;
   color: #f7f1e8;
 }
@@ -46,7 +46,7 @@
 .imageWrap {
   position: relative;
   overflow: hidden;
-  border-radius: 1.4rem;
+  border-radius: 0;
   background: #222225;
 }
 
