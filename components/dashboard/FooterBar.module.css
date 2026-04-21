@@ -1,0 +1,34 @@
+.footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.4rem;
+  height: 100%;
+  padding: 0 1.35rem;
+  border-radius: 1.6rem;
+  background: #d7d3cf;
+}
+
+.links {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  color: #43464c;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .links {
+    justify-content: start;
+  }
+}

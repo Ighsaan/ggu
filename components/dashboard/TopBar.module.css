@@ -1,0 +1,111 @@
+.bar {
+  display: grid;
+  grid-template-columns: auto minmax(16rem, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  padding: 0 1.35rem;
+  border-radius: 1.6rem;
+  background: #d7d3cf;
+}
+
+.searchWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  min-height: 3.2rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: #ebe7e3;
+  border: 1px solid rgba(17, 18, 20, 0.08);
+}
+
+.searchIcon {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #646870;
+  border-radius: 999px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.searchIcon::after {
+  content: "";
+  position: absolute;
+  right: -0.32rem;
+  bottom: -0.28rem;
+  width: 0.5rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #646870;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.searchInput {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #151618;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #757980;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.authButton {
+  min-height: 3.2rem;
+  padding-inline: 1.25rem;
+  background: #131313 !important;
+  color: #f4f0ea !important;
+  border: 1px solid #131313 !important;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.authButton:hover {
+  background: #1d1d1d !important;
+}
+
+.menuButton {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.28rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: #ebe7e3;
+  cursor: pointer;
+}
+
+.menuButton span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: #111214;
+}
+
+@media (max-width: 900px) {
+  .bar {
+    grid-template-columns: 1fr;
+    padding: 0.9rem 1rem;
+    height: auto;
+  }
+
+  .actions {
+    justify-content: space-between;
+  }
+}

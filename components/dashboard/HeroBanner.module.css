@@ -1,0 +1,65 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: 1rem;
+  height: 100%;
+  padding: 1.55rem 1.65rem;
+  border-radius: 1.8rem;
+  background: #131313;
+  color: #f7f1e8;
+}
+
+.copyBlock {
+  display: grid;
+  align-content: center;
+  gap: 0.9rem;
+}
+
+.title {
+  max-width: 12rem;
+  font-size: clamp(2.4rem, 5.2vw, 4rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.subtitle {
+  max-width: 19rem;
+  color: rgba(247, 241, 232, 0.76);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.voteButton {
+  width: fit-content;
+  min-height: 3rem;
+  padding-inline: 1.3rem;
+  background: #f1e6d8 !important;
+  color: #151618 !important;
+  border: 1px solid #f1e6d8 !important;
+}
+
+.voteButton:hover {
+  background: #f7efe5 !important;
+}
+
+.imageWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.4rem;
+  background: #222225;
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .imageWrap {
+    min-height: 15rem;
+  }
+}

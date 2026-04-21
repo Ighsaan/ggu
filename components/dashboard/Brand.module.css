@@ -1,0 +1,50 @@
+.wrap,
+.compactWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.mark,
+.compactMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.95rem;
+  background: #131313;
+  color: #f5f1ea;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.mark {
+  width: 3.15rem;
+  height: 3.15rem;
+  font-size: 0.74rem;
+}
+
+.compactMark {
+  width: 2.65rem;
+  height: 2.65rem;
+  font-size: 0.68rem;
+}
+
+.textBlock {
+  display: grid;
+  gap: 0.08rem;
+  color: #111214;
+  line-height: 1;
+}
+
+.title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.subtitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}

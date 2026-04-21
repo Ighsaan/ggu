@@ -1,12 +1,19 @@
-import Image from "next/image";
+import { FooterBar } from "@/components/dashboard/FooterBar";
+import {
+  GameCarousel,
+  type GameCarouselItem,
+} from "@/components/dashboard/GameCarousel";
+import { HeroBanner } from "@/components/dashboard/HeroBanner";
+import { SectionBanner } from "@/components/dashboard/SectionBanner";
+import { TopBar } from "@/components/dashboard/TopBar";
 import { isDatabaseConfigured } from "@/db";
 import { syncAppUserFromAuth } from "@/lib/data/users";
 import { getSessionUser } from "@/lib/supabase/user";
 import styles from "./page.module.css";
 
-const visitedGames = [
+const recentlyVisitedGames: readonly GameCarouselItem[] = [
   {
-    title: "Legends",
+    title: "Apex Legends",
     image: "/placeholders/game-card-legends.svg",
   },
   {
@@ -17,11 +24,11 @@ const visitedGames = [
     title: "Arc Raiders",
     image: "/placeholders/game-card-arc-raiders.svg",
   },
-] as const;
+];
 
-const trendingGames = [
+const trendingGames: readonly GameCarouselItem[] = [
   {
-    title: "Legends",
+    title: "Apex Legends",
     image: "/placeholders/game-card-legends.svg",
   },
   {
@@ -36,14 +43,15 @@ const trendingGames = [
     title: "Arc Raiders",
     image: "/placeholders/game-card-arc-raiders.svg",
   },
-] as const;
-
-const footerLinks = [
-  "Contact Us",
-  "Terms & Conditions",
-  "Privacy Policy",
-  "Enquiries",
-] as const;
+  {
+    title: "Call of Duty Warzone",
+    image: "/placeholders/game-card-warzone.svg",
+  },
+  {
+    title: "Battlefield 6",
+    image: "/placeholders/game-card-battlefield.svg",
+  },
+];
 
 export default async function DashboardPage() {
   const user = await getSessionUser();
@@ -59,120 +67,34 @@ export default async function DashboardPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.frame}>
-        <aside className={styles.sidebar}>
-          <div className={styles.brandBlock}>
-            <div className={styles.brandMark}>GGU</div>
-            <div className={styles.brandText}>
-              <span>GGU</span>
-              <span>GLOBAL GAME</span>
-            </div>
-          </div>
+      <section className={styles.shell}>
+        <div className={styles.topBarSlot}>
+          <TopBar />
+        </div>
 
-          <div className={styles.iconRail}>
-            <span className={styles.iconButton} />
-            <span className={styles.iconButtonActive} />
-            <span className={styles.iconButton} />
-            <span className={styles.iconButton} />
-          </div>
+        <div className={styles.heroSlot}>
+          <HeroBanner />
+        </div>
 
-          <div className={styles.bottomRail}>
-            <span className={styles.iconButton} />
-            <span className={styles.iconButton} />
-          </div>
-        </aside>
+        <div className={styles.bannerSlot}>
+          <SectionBanner title="Recently Visited" />
+        </div>
 
-        <section className={styles.content}>
-          <section className={styles.heroSection}>
-            <div className={styles.heroTextBlock}>
-              <p className={styles.heroEyebrow}>GGU GLOBAL GAME</p>
-              <h1 className={styles.heroTitle}>LET THE DEVS KNOW!</h1>
-            </div>
+        <div className={styles.carouselSlot}>
+          <GameCarousel items={recentlyVisitedGames} />
+        </div>
 
-            <div className={styles.heroImageWrap}>
-              <Image
-                src="/placeholders/game-hero-poster.svg"
-                alt="Placeholder hero poster"
-                fill
-                priority
-                sizes="(max-width: 1000px) 100vw, 30vw"
-                className={styles.image}
-              />
-            </div>
-          </section>
+        <div className={styles.bannerSlot}>
+          <SectionBanner title="Top trending games" />
+        </div>
 
-          <section className={styles.bottomSection}>
-            <section className={styles.leftColumn}>
-              <article className={styles.sectionCard}>
-                <h2 className={styles.sectionTitle}>Recently Visited</h2>
-                <div className={styles.visitedGrid}>
-                  {visitedGames.map((game) => (
-                    <article key={game.title} className={styles.visitCard}>
-                      <div className={styles.visitImageWrap}>
-                        <Image
-                          src={game.image}
-                          alt={`${game.title} placeholder image`}
-                          fill
-                          sizes="(max-width: 1000px) 33vw, 12vw"
-                          className={styles.image}
-                        />
-                      </div>
-                      <p className={styles.gameLabel}>{game.title}</p>
-                    </article>
-                  ))}
-                </div>
-              </article>
+        <div className={styles.carouselSlotLarge}>
+          <GameCarousel items={trendingGames} dense />
+        </div>
 
-              <article className={styles.sectionCard}>
-                <h2 className={styles.sectionTitle}>Top Trending Games</h2>
-                <div className={styles.trendingGrid}>
-                  {trendingGames.map((game) => (
-                    <article key={game.title} className={styles.trendingCard}>
-                      <div className={styles.trendingImageWrap}>
-                        <Image
-                          src={game.image}
-                          alt={`${game.title} trending placeholder image`}
-                          fill
-                          sizes="(max-width: 1000px) 25vw, 10vw"
-                          className={styles.image}
-                        />
-                      </div>
-                      <p className={styles.gameLabel}>{game.title}</p>
-                    </article>
-                  ))}
-                </div>
-              </article>
-            </section>
-
-            <aside className={styles.rightColumn}>
-              <div className={styles.tagRow}>
-                <span>Call Of Duty</span>
-                <span>Warzone</span>
-                <span>Battlefield 6</span>
-              </div>
-
-              <div className={styles.featureCard}>
-                <div className={styles.featureImageWrap}>
-                  <Image
-                    src="/placeholders/game-feature-poster.svg"
-                    alt="Featured game placeholder poster"
-                    fill
-                    sizes="(max-width: 1000px) 100vw, 22vw"
-                    className={styles.image}
-                  />
-                </div>
-                <p className={styles.featureTitle}>Call Of Duty</p>
-                <p className={styles.featureSubtitle}>Warzone Battlefield 6</p>
-              </div>
-
-              <footer className={styles.footerLinks}>
-                {footerLinks.map((link) => (
-                  <span key={link}>{link}</span>
-                ))}
-              </footer>
-            </aside>
-          </section>
-        </section>
+        <div className={styles.footerSlot}>
+          <FooterBar />
+        </div>
       </section>
     </main>
   );
