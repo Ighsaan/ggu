@@ -1,0 +1,22 @@
+<svg width="1400" height="960" viewBox="0 0 1400 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="960" rx="48" fill="#0F172A"/>
+  <rect width="1400" height="960" rx="48" fill="url(#paint0_linear)" fill-opacity="0.72"/>
+  <circle cx="1188" cy="180" r="180" fill="#F59E0B" fill-opacity="0.22"/>
+  <circle cx="280" cy="210" r="220" fill="#60A5FA" fill-opacity="0.2"/>
+  <rect x="122" y="148" width="1156" height="664" rx="34" fill="#E2E8F0" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <rect x="196" y="236" width="356" height="336" rx="26" fill="#FFFFFF" fill-opacity="0.12"/>
+  <rect x="590" y="236" width="492" height="214" rx="26" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="590" y="490" width="262" height="210" rx="26" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="892" y="490" width="190" height="210" rx="26" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M250 570L360 438L470 560L552 454V704H196V616L250 570Z" fill="#F8FAFC" fill-opacity="0.32"/>
+  <path d="M643 394C701 332 762 305 826 314C909 326 954 404 1038 416V666H643V394Z" fill="#F8FAFC" fill-opacity="0.18"/>
+  <text x="196" y="792" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700">Hero placeholder</text>
+  <text x="196" y="846" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="28">Use final reference artwork here when supplied.</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="116" y1="84" x2="1266" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D4ED8"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+</svg>

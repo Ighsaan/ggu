@@ -1,0 +1,18 @@
+<svg width="960" height="720" viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="720" rx="40" fill="#111827"/>
+  <rect width="960" height="720" rx="40" fill="url(#paint0_linear)" fill-opacity="0.84"/>
+  <circle cx="742" cy="162" r="132" fill="#F97316" fill-opacity="0.2"/>
+  <rect x="92" y="92" width="776" height="536" rx="30" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <rect x="142" y="154" width="286" height="204" rx="22" fill="#FFFFFF" fill-opacity="0.1"/>
+  <rect x="466" y="154" width="252" height="96" rx="20" fill="#FFFFFF" fill-opacity="0.08"/>
+  <rect x="466" y="278" width="314" height="238" rx="20" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M166 520L284 374L406 506V592H142V552L166 520Z" fill="#F8FAFC" fill-opacity="0.28"/>
+  <text x="142" y="622" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700">Secondary placeholder</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="86" y1="78" x2="876" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.52" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+</svg>
