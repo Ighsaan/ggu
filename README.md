@@ -1,13 +1,18 @@
 # GGU
 
-GGU is now a **governance-first Next.js starter** that is pre-wired for:
+GGU is now a **minimal Next.js app** wired for:
 
 - **Supabase Auth** with **Google sign-in**
 - **Supabase Postgres**
-- **Drizzle ORM** and SQL migrations
+- **Drizzle ORM** migrations
 - **Vercel** hosting and deployment
 
-The repository is still an early foundation rather than a finished product, but the application layer, auth flow, database wiring, and setup documentation are now in place.
+The current app surface is intentionally small:
+
+- `/login`
+- `/dashboard`
+
+The dashboard is public and always shows whether there is an active session. A successful Google login creates or updates a row in `public.users`.
 
 ## Current stack
 
@@ -25,12 +30,11 @@ The repository is still an early foundation rather than a finished product, but 
 ## What is already implemented
 
 - App Router project scaffold
-- shared UI component library primitives (`Button`, `ButtonLink`, `Card`, `Badge`)
 - Google sign-in route and callback flow using Supabase SSR helpers
-- session-refresh proxy for Next.js App Router
-- protected dashboard example
+- public dashboard that shows signed-in vs signed-out state
+- user sync into `public.users` after successful login
 - Drizzle schema and migration setup for Supabase Postgres
-- starter `profiles` table migration with RLS policies
+- optional GitHub Actions migration job for main branch pushes
 - `Makefile` with `make precommit`
 - AI governance, coding standards, and repo agent instructions
 
@@ -100,7 +104,7 @@ This runs:
 
 3. Fill in your Supabase values.
 
-4. Apply the initial database migration:
+4. Apply the database migrations:
 
    ```bash
    npm run db:migrate
@@ -112,9 +116,17 @@ This runs:
    npm run dev
    ```
 
+6. Open:
+   - `/login`
+   - `/dashboard`
+
+## CI/CD migration note
+
+The GitHub Actions workflow can run `npm run db:migrate` on pushes to `main` when the repository secret `DATABASE_URL` is configured with the Supabase runtime connection string.
+
 ## Next recommended steps
 
-- decide the first real domain data model beyond the starter `profiles` table,
-- add additional protected routes and business features,
+- add the real domain tables beyond the auth-backed `users` table,
+- refine the UI/UX once the core flow is locked,
 - define the production domain and Vercel project settings,
-- keep RLS policies aligned with every new user-data table.
+- keep database policies aligned with any future user data tables.

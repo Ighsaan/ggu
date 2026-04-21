@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { SiteHeader } from "@/components/navigation/SiteHeader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | GGU",
   },
   description:
-    "A governance-first Next.js starter configured for Supabase Auth, Supabase Postgres, Drizzle ORM, and Vercel hosting.",
+    "A minimal Next.js app with Supabase Google auth, a public dashboard, and Drizzle-backed user syncing.",
 };
 
 export default function RootLayout({
@@ -29,10 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
-        <SiteHeader />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

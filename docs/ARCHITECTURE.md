@@ -1,6 +1,6 @@
 # Architecture and Infrastructure Overview
 
-This document explains how GGU is put together today, how requests move through the system, and which external services are responsible for each part of the stack.
+This document explains how GGU is structured today, how login requests move through the stack, and which external services are responsible for each part of the system.
 
 ## Goals of the current architecture
 
@@ -10,15 +10,14 @@ The current design optimizes for:
 - **clear separation** between browser-safe configuration and server-only secrets,
 - **Supabase-managed authentication** with Google as the provider,
 - **Drizzle-managed SQL schema** instead of hand-maintained dashboard SQL, and
-- **Vercel-native deployment** for both preview and production environments.
+- **a minimal product surface** consisting of only a login page and a dashboard.
 
 ## High-level topology
 
 At a high level, the project consists of four main systems:
 
 1. **Next.js app on Vercel**
-   - serves the web UI, server components, route handlers, and server actions,
-   - runs the protected dashboard and auth callback route,
+   - serves the login page, public dashboard, server actions, and auth callback route,
    - holds deployment-time environment variables.
 
 2. **Supabase Auth**
@@ -28,8 +27,8 @@ At a high level, the project consists of four main systems:
 
 3. **Supabase Postgres**
    - stores application data,
-   - stores the starter `profiles` table,
-   - enforces Row Level Security (RLS) policies defined in the Drizzle SQL migration.
+   - stores the app-owned `public.users` table,
+   - tracks Drizzle migration state.
 
 4. **Google OAuth**
    - is the upstream identity provider,
@@ -47,21 +46,22 @@ When a user signs in with Google, the flow is:
 3. The server action creates a Supabase server client and computes a callback URL like:
    - `/auth/callback?next=/dashboard`
 4. Supabase generates an OAuth authorization URL for the Google provider.
-5. The browser is redirected to Google, but **through Supabase Auth**.
+5. The browser is redirected to Google through Supabase Auth.
 6. After successful Google sign-in, Google redirects back to Supabase at:
    - `https://<supabase-project-ref>.supabase.co/auth/v1/callback`
 7. Supabase completes the provider handshake and redirects the browser back to the app callback route.
 8. `app/auth/callback/route.ts` exchanges the returned code for a Supabase session.
-9. The app redirects the user to the requested in-app route, currently defaulting to `/dashboard`.
+9. After session creation, the app attempts to insert or update the authenticated user in `public.users` via Drizzle.
+10. The app redirects the user to `/dashboard`.
 
-### Protected route flow
+### Dashboard flow
 
-For a protected request such as `/dashboard`:
+For a request to `/dashboard`:
 
 1. The app reads the Supabase session from cookies.
-2. If no user is present, the request is redirected to `/login`.
-3. If a user is present, the app renders the protected page.
-4. If `DATABASE_URL` is configured, the app attempts to mirror the authenticated user into the `profiles` table via Drizzle.
+2. The route always renders, even when there is no session.
+3. The page reports whether the visitor is logged in or not.
+4. If a user session is present and `DATABASE_URL` is configured, the app inserts or updates the user row in `public.users`.
 
 ## Data flow and database layer
 
@@ -86,12 +86,12 @@ Schema management is handled with **Drizzle Kit**.
 Relevant files:
 
 - `drizzle.config.ts`
-- `drizzle/0000_curvy_proudstar.sql`
+- `drizzle/*.sql`
 - `drizzle/meta/_journal.json`
 
 Important details:
 
-- `drizzle.config.ts` now loads `.env.local` first and then `.env`.
+- `drizzle.config.ts` loads `.env.local` first and then `.env`.
 - `DATABASE_URL` is sufficient for the deployed runtime.
 - `DIRECT_URL` exists primarily for local migration workflows where a direct connection is preferred or required.
 - Applied migration state is tracked in `drizzle.__drizzle_migrations`.
@@ -102,9 +102,9 @@ Important details:
 
 The app uses the Next.js App Router. The main routes are:
 
-- `/` — landing page and setup status
+- `/` — redirects to `/dashboard`
 - `/login` — Google sign-in entry point
-- `/dashboard` — protected authenticated page
+- `/dashboard` — public page that reports auth state and database sync state
 - `/auth/callback` — auth code exchange route
 
 ### Server-side Supabase helpers
@@ -118,13 +118,13 @@ Supabase server logic is split into small helpers:
 
 ### Domain data
 
-The first application-owned table is `profiles`.
+The current app-owned table is `public.users`.
 
 That table:
 
 - keys rows by `auth.users.id`,
-- stores basic user metadata,
-- is protected by RLS policies so authenticated users can only access their own row.
+- stores basic user metadata from successful logins,
+- is updated whenever a login completes and whenever an authenticated user loads the dashboard.
 
 ## Environment variable model
 
@@ -153,6 +153,7 @@ Typical placement is:
 - `.env.local` for local development
 - Vercel **Production** env vars for live traffic
 - Vercel **Preview** env vars for preview deployments
+- GitHub Actions repository secret `DATABASE_URL` if you want automatic DB migrations on `main`
 
 ## Deployment architecture
 
@@ -173,11 +174,11 @@ Supabase is responsible for:
 - session lifecycle
 - OAuth provider integration
 - Postgres hosting
-- RLS enforcement
+- migration target database
 
 ### Google
 
-Google is only responsible for identity verification during sign-in. It is **not** the session store and it does **not** directly redirect back into app business logic. The app trusts the Supabase session that comes back after the OAuth flow is completed.
+Google is only responsible for identity verification during sign-in. It is **not** the session store and it does **not** directly redirect back into app business logic. The app trusts the Supabase session returned after the OAuth flow is completed.
 
 ## Operational notes
 
@@ -214,19 +215,7 @@ The most common integration issues in this architecture are:
    - malformed `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, or `NEXT_PUBLIC_SITE_URL` will break login flow in ways that can look like auth or callback bugs.
 
 3. **Missing runtime `DATABASE_URL`**
-   - auth can work while database sync fails.
+   - auth can work while the app user sync fails.
 
 4. **Migration state mismatch**
    - if the schema exists but `drizzle.__drizzle_migrations` is missing or empty, `npm run db:migrate` may try to reapply already-created tables.
-
-## Summary
-
-GGU currently follows a straightforward hosted architecture:
-
-- **Vercel** runs the Next.js application,
-- **Supabase Auth** handles sign-in and sessions,
-- **Supabase Postgres** stores application data,
-- **Google** is the OAuth provider, and
-- **Drizzle** defines and evolves the application schema.
-
-That gives the project a relatively low-ops setup with a clean separation between UI, auth/session handling, and database concerns.

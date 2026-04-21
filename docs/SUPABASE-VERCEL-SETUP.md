@@ -73,7 +73,7 @@ DIRECT_URL=...
 ### Which database URL goes where?
 
 - `DATABASE_URL`: use the **pooled** Supabase connection string for application runtime
-- `DIRECT_URL`: use the **direct** Supabase connection string for local Drizzle migrations
+- `DIRECT_URL`: use the **direct** Supabase connection string for local Drizzle migrations when available
 
 ## 5) Apply the migration
 
@@ -83,13 +83,7 @@ After `.env.local` is filled in, run:
 npm run db:migrate
 ```
 
-The initial migration creates:
-
-- `profiles` table
-- foreign key to `auth.users`
-- Row Level Security
-- starter RLS policies for the authenticated user
-- updated-at trigger
+The current app migration creates the `users` table used by the app layer and keeps the runtime database ready for login-driven syncing.
 
 ## 6) Start the app locally
 
@@ -99,9 +93,10 @@ npm run dev
 
 Then visit:
 
-- `/`
 - `/login`
 - `/dashboard`
+
+The dashboard is public and will report whether you are logged in.
 
 ## 7) Set up Vercel
 
@@ -121,7 +116,17 @@ In Vercel:
 - `DIRECT_URL` is mainly needed for local migration workflows.
 - `DATABASE_URL` is the important runtime variable for the deployed app.
 
-## 8) Update Supabase after the first Vercel deploy
+## 8) Optional GitHub Actions DB migration job
+
+The repo CI workflow can also run `npm run db:migrate` on pushes to `main`.
+
+To enable that, add this repository secret:
+
+- `DATABASE_URL` = your Supabase runtime database URL
+
+If the secret is not configured, the migration job skips itself cleanly.
+
+## 9) Update Supabase after the first Vercel deploy
 
 Once Vercel gives you a preview URL and/or production domain, add those callback URLs to Supabase Auth settings if they are not already present.
 
@@ -143,8 +148,7 @@ The codebase already includes:
 
 - Supabase SSR server client
 - auth callback route
-- session proxy
-- protected dashboard example
+- public dashboard and login pages
 - Drizzle schema and migration setup
-- starter profile sync using Drizzle ORM
+- app user sync using Drizzle ORM
 - Vercel-oriented documentation and env guidance

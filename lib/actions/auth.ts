@@ -51,10 +51,10 @@ export async function signInWithGoogleAction(formData: FormData) {
 
 export async function signOutAction() {
   if (!isSupabaseConfigured()) {
-    redirect("/");
+    redirect("/dashboard");
   }
 
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
-  redirect("/");
+  redirect("/dashboard");
 }

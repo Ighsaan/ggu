@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { syncAppUserFromAuth } from "@/lib/data/users";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -31,7 +32,7 @@ export async function GET(request: Request) {
   }
 
   const supabase = await createSupabaseServerClient();
-  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
     return NextResponse.redirect(
@@ -40,6 +41,14 @@ export async function GET(request: Request) {
         requestUrl.origin,
       ),
     );
+  }
+
+  if (data.user) {
+    try {
+      await syncAppUserFromAuth(data.user);
+    } catch (syncError) {
+      console.error("Failed to sync app user after auth callback", syncError);
+    }
   }
 
   return NextResponse.redirect(new URL(next, requestUrl.origin));
