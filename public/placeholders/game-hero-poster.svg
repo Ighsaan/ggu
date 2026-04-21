@@ -1,17 +1,15 @@
-<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="1100" rx="44" fill="#191919"/>
-  <rect width="900" height="1100" rx="44" fill="url(#paint0_linear)" fill-opacity="0.92"/>
-  <circle cx="666" cy="292" r="212" fill="#F3C995" fill-opacity="0.28"/>
-  <path d="M226 996V612C226 486.073 328.073 384 454 384C579.927 384 682 486.073 682 612V996H226Z" fill="#D9B487"/>
-  <path d="M266 994V655C266 551.171 350.171 467 454 467C557.829 467 642 551.171 642 655V994H266Z" fill="#202022"/>
-  <circle cx="454" cy="338" r="126" fill="#E6C39A"/>
-  <path d="M302 184C340 122 402 90 485 90C573 90 640 132 681 202C625 167 567 153 505 162C442 172 381 203 302 184Z" fill="#09090A"/>
-  <rect x="124" y="824" width="220" height="82" rx="24" fill="#0F0F10" fill-opacity="0.58"/>
-  <text x="164" y="874" fill="#F8E8D5" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700">PLACEHOLDER</text>
-  <defs>
-    <linearGradient id="paint0_linear" x1="110" y1="102" x2="734" y2="1016" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#312E2B"/>
-      <stop offset="1" stop-color="#8B6848"/>
-    </linearGradient>
-  </defs>
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#1B1B1D"/>
+  <rect x="180" y="86" width="770" height="720" rx="18" fill="#F2EDE5"/>
+  <rect x="220" y="126" width="690" height="640" rx="12" fill="#E4D4C1"/>
+  <circle cx="608" cy="320" r="126" fill="#F1D0AE"/>
+  <path d="M416 724V462C416 356.513 501.513 271 607 271C712.487 271 798 356.513 798 462V724H416Z" fill="#131315"/>
+  <path d="M468 724V516C468 439.784 529.784 378 606 378C682.216 378 744 439.784 744 516V724H468Z" fill="#F8F5F0"/>
+  <path d="M468 214C504 170 548 148 611 148C690 148 748 176 786 232C728 206 674 197 622 204C561 213 516 233 468 214Z" fill="#111214"/>
+  <rect x="94" y="98" width="64" height="64" rx="14" fill="#2F76FF"/>
+  <path d="M116 130H136" stroke="#F5F8FF" stroke-width="7" stroke-linecap="round"/>
+  <path d="M126 120V140" stroke="#F5F8FF" stroke-width="7" stroke-linecap="round"/>
+  <rect x="980" y="164" width="104" height="104" rx="18" fill="#F0C759"/>
+  <path d="M1008 210H1056" stroke="#141518" stroke-width="10" stroke-linecap="round"/>
+  <path d="M1020 228L1043 185L1066 228" stroke="#141518" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

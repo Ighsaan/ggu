@@ -11,7 +11,7 @@ const footerLinks = [
 export function FooterBar() {
   return (
     <footer className={styles.footer}>
-      <Brand compact />
+      <Brand compact inverse />
 
       <div className={styles.links}>
         {footerLinks.map((link) => (

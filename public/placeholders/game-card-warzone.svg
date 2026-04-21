@@ -1,14 +1,8 @@
-<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="420" rx="32" fill="#202124"/>
-  <rect width="720" height="420" rx="32" fill="url(#paint0_linear)" fill-opacity="0.92"/>
-  <circle cx="560" cy="136" r="110" fill="#7FBF8D" fill-opacity="0.18"/>
-  <path d="M198 364V224C198 148.232 259.232 87 335 87C410.768 87 472 148.232 472 224V364H198Z" fill="#141618"/>
-  <circle cx="335" cy="150" r="74" fill="#DAB89B"/>
-  <path d="M248 72C286 34 326 18 378 18C434 18 478 36 506 78C454 58 410 48 372 54C328 60 288 76 248 72Z" fill="#0B0C0D"/>
-  <defs>
-    <linearGradient id="paint0_linear" x1="70" y1="56" x2="642" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2B2F2C"/>
-      <stop offset="1" stop-color="#5D7662"/>
-    </linearGradient>
-  </defs>
+<svg width="720" height="300" viewBox="0 0 720 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="300" fill="#FCFBF8"/>
+  <rect x="38" y="36" width="644" height="228" rx="12" fill="#D8E2D9"/>
+  <rect x="70" y="68" width="168" height="168" rx="24" fill="#24352A"/>
+  <text x="154" y="164" text-anchor="middle" fill="#F3EEE6" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">WZ</text>
+  <text x="288" y="148" fill="#131416" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">CALL OF DUTY</text>
+  <text x="288" y="194" fill="#4E5157" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">WARZONE</text>
 </svg>

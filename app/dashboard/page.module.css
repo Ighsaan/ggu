@@ -1,30 +1,28 @@
 .page {
   width: 100%;
   max-width: none;
-  height: 100vh;
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, #d2ceca 0%, #c9c5c1 100%);
+  background: #f4f2ee;
 }
 
 .shell {
   display: grid;
   grid-template-rows:
-    minmax(4.7rem, 0.9fr)
-    minmax(16rem, 2.35fr)
-    minmax(3.1rem, 0.55fr)
-    minmax(9.2rem, 1.35fr)
-    minmax(3.1rem, 0.55fr)
-    minmax(10rem, 1.48fr)
-    minmax(4.6rem, 0.8fr);
-  gap: 0.8rem;
+    minmax(4.15rem, 0.72fr)
+    minmax(15.5rem, 2fr)
+    2.9rem
+    minmax(7.8rem, 0.95fr)
+    2.9rem
+    minmax(8.8rem, 1.1fr)
+    minmax(4.1rem, 0.65fr);
+  gap: 0;
   height: 100%;
   padding: 0;
-  border-radius: 0;
-  background: #cbc7c3;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: #f4f2ee;
 }
 
 .topBarSlot,
@@ -34,6 +32,23 @@
 .carouselSlotLarge,
 .footerSlot {
   min-height: 0;
+}
+
+.heroSlot {
+  background: #121212;
+}
+
+.bannerSlot {
+  background: #dbd8d4;
+}
+
+.carouselSlot,
+.carouselSlotLarge {
+  background: #f4f2ee;
+}
+
+.footerSlot {
+  background: #121212;
 }
 
 @media (max-width: 900px) {

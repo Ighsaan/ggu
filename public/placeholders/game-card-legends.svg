@@ -1,14 +1,8 @@
-<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="420" rx="32" fill="#2B2D34"/>
-  <rect width="720" height="420" rx="32" fill="url(#paint0_linear)" fill-opacity="0.9"/>
-  <circle cx="552" cy="132" r="118" fill="#F0C58D" fill-opacity="0.26"/>
-  <path d="M188 368V228C188 149.576 251.576 86 330 86C408.424 86 472 149.576 472 228V368H188Z" fill="#101114"/>
-  <circle cx="330" cy="148" r="74" fill="#E4C19B"/>
-  <path d="M244 70C276 34 314 18 366 18C428 18 472 38 500 76C450 54 406 46 366 52C322 58 286 72 244 70Z" fill="#0A0B0D"/>
-  <defs>
-    <linearGradient id="paint0_linear" x1="58" y1="52" x2="640" y2="372" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#36312F"/>
-      <stop offset="1" stop-color="#88684A"/>
-    </linearGradient>
-  </defs>
+<svg width="720" height="300" viewBox="0 0 720 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="300" fill="#FCFBF8"/>
+  <rect x="38" y="36" width="644" height="228" rx="12" fill="#E8D8C5"/>
+  <rect x="70" y="68" width="168" height="168" rx="24" fill="#1E1F23"/>
+  <text x="154" y="166" text-anchor="middle" fill="#F4EFE6" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="800">A</text>
+  <text x="288" y="148" fill="#131416" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">APEX</text>
+  <text x="288" y="194" fill="#4E5157" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">LEGENDS</text>
 </svg>

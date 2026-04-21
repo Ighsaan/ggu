@@ -1,14 +1,8 @@
-<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="420" rx="32" fill="#21242A"/>
-  <rect width="720" height="420" rx="32" fill="url(#paint0_linear)" fill-opacity="0.92"/>
-  <circle cx="560" cy="138" r="112" fill="#8FB4E8" fill-opacity="0.18"/>
-  <path d="M200 364V224C200 148.232 261.232 87 337 87C412.768 87 474 148.232 474 224V364H200Z" fill="#15181C"/>
-  <circle cx="337" cy="150" r="74" fill="#D9BAA1"/>
-  <path d="M248 72C286 34 328 18 380 18C436 18 480 38 508 82C454 58 410 48 372 54C330 60 288 76 248 72Z" fill="#0A0C10"/>
-  <defs>
-    <linearGradient id="paint0_linear" x1="70" y1="54" x2="642" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#29303A"/>
-      <stop offset="1" stop-color="#5A6F92"/>
-    </linearGradient>
-  </defs>
+<svg width="720" height="300" viewBox="0 0 720 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="300" fill="#FCFBF8"/>
+  <rect x="38" y="36" width="644" height="228" rx="12" fill="#D6DCE8"/>
+  <rect x="70" y="68" width="168" height="168" rx="24" fill="#253548"/>
+  <text x="154" y="164" text-anchor="middle" fill="#F3EEE6" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">BF6</text>
+  <text x="288" y="148" fill="#131416" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">BATTLEFIELD</text>
+  <text x="288" y="194" fill="#4E5157" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">6</text>
 </svg>

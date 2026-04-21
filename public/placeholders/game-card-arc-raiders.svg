@@ -1,14 +1,9 @@
-<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="420" rx="32" fill="#1F2024"/>
-  <rect width="720" height="420" rx="32" fill="url(#paint0_linear)" fill-opacity="0.92"/>
-  <circle cx="562" cy="134" r="112" fill="#F1E4D1" fill-opacity="0.2"/>
-  <path d="M196 366V226C196 149.337 258.337 87 335 87C411.663 87 474 149.337 474 226V366H196Z" fill="#151619"/>
-  <circle cx="335" cy="150" r="74" fill="#E4C4A6"/>
-  <path d="M250 74C286 38 324 20 374 20C430 20 476 38 506 82C456 58 410 48 370 54C328 60 290 76 250 74Z" fill="#0A0B0C"/>
-  <defs>
-    <linearGradient id="paint0_linear" x1="70" y1="56" x2="640" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#292B31"/>
-      <stop offset="1" stop-color="#7A6D60"/>
-    </linearGradient>
-  </defs>
+<svg width="720" height="300" viewBox="0 0 720 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="300" fill="#FCFBF8"/>
+  <rect x="38" y="36" width="644" height="228" rx="12" fill="#E5E1DA"/>
+  <rect x="70" y="68" width="168" height="168" rx="24" fill="#1B1C1F"/>
+  <path d="M112 190L154 108L196 190" stroke="#F5F0E8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M132 158H176" stroke="#F5F0E8" stroke-width="14" stroke-linecap="round"/>
+  <text x="288" y="148" fill="#131416" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">ARC</text>
+  <text x="288" y="194" fill="#4E5157" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">RAIDERS</text>
 </svg>
