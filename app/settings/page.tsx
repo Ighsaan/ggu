@@ -48,7 +48,8 @@ export default async function SettingsPage() {
                 <input type="checkbox" />
               </label>
               <p className={styles.hint}>
-                These are UI-ready placeholders for now and are not persisted yet.
+                These are UI-ready placeholders for now and are not persisted
+                yet.
               </p>
             </section>
 

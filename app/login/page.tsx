@@ -95,11 +95,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
 function GoogleGlyph() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className={styles.buttonIcon}
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" className={styles.buttonIcon} aria-hidden="true">
       <path
         fill="#ffffff"
         d="M21.35 11.1h-9.2v2.9h5.28c-.23 1.44-1.66 4.22-5.28 4.22-3.18 0-5.77-2.63-5.77-5.87s2.59-5.87 5.77-5.87c1.81 0 3.02.77 3.71 1.43l2.53-2.44C16.86 3.82 14.75 3 12.15 3 6.98 3 2.83 7.15 2.83 12.35S6.98 21.7 12.15 21.7c7.02 0 9.37-4.92 9.37-8.64 0-.58-.06-1.03-.17-1.96z"

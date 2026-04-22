@@ -81,7 +81,7 @@ and reviewed carefully.
 
 | Level  | Examples                                                                                                              | Policy                                                                       |
 | ------ | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Low    | copy updates, visual polish within established patterns, docs, small UI component refinements                        | AI may implement directly; human review required before merge                |
+| Low    | copy updates, visual polish within established patterns, docs, small UI component refinements                         | AI may implement directly; human review required before merge                |
 | Medium | dependency changes, route-level layout changes, data flow updates, component contract changes                         | AI may draft and implement, but human review is required with extra scrutiny |
 | High   | auth, payments, user data handling, telemetry, secret management, destructive operations, deployment or infra changes | human approval required before implementation and again before merge/release |
 

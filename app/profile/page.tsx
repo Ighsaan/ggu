@@ -40,7 +40,9 @@ export default async function ProfilePage() {
         <section className={styles.body}>
           <article className={styles.card}>
             <h1 className={styles.title}>Your Profile</h1>
-            <p className={styles.subtitle}>Account details for your GGU profile.</p>
+            <p className={styles.subtitle}>
+              Account details for your GGU profile.
+            </p>
 
             <div className={styles.profileHead}>
               <span className={styles.avatar}>
@@ -58,7 +60,9 @@ export default async function ProfilePage() {
               </span>
               <div className={styles.identity}>
                 <p className={styles.name}>{userName}</p>
-                <p className={styles.handle}>{user.email ?? "No email available"}</p>
+                <p className={styles.handle}>
+                  {user.email ?? "No email available"}
+                </p>
               </div>
             </div>
 
@@ -73,7 +77,11 @@ export default async function ProfilePage() {
               </div>
               <div className={styles.metaRow}>
                 <dt>Last sign-in</dt>
-                <dd>{user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : "Unknown"}</dd>
+                <dd>
+                  {user.last_sign_in_at
+                    ? new Date(user.last_sign_in_at).toLocaleString()
+                    : "Unknown"}
+                </dd>
               </div>
             </dl>
 

@@ -11,9 +11,13 @@
   --success: #15803d;
   --warning: #b45309;
 
-  --font-sans: var(--font-quicksand), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-display: var(--font-ubuntu), var(--font-quicksand), var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans:
+    var(--font-quicksand), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-display:
+    var(--font-ubuntu), var(--font-quicksand), var(--font-geist-sans), Arial,
+    Helvetica, sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 * {

@@ -32,8 +32,7 @@ export const metadata: Metadata = {
     default: "GGU",
     template: "%s | GGU",
   },
-  description:
-    "Global Gamers Union",
+  description: "Global Gamers Union",
 };
 
 export default function RootLayout({

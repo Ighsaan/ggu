@@ -12,13 +12,13 @@
 .shell {
   display: grid;
   grid-template-rows:
-    7vh   /* top bar     */
-    40vh  /* hero        */
-    6vh   /* banner      */
-    17vh  /* carousel    */
-    6vh   /* banner      */
-    17vh  /* carousel lg */
-    7vh;  /* footer      */
+    7vh /* top bar     */
+    40vh /* hero        */
+    6vh /* banner      */
+    17vh /* carousel    */
+    6vh /* banner      */
+    17vh /* carousel lg */
+    7vh; /* footer      */
   gap: 0;
   height: 100%;
   padding: 0;
