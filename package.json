@@ -12,9 +12,17 @@
     "format:check": "prettier --check .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "supabase:start": "set -a && . ./supabase/.env && set +a && supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:restart": "npm run supabase:stop && npm run supabase:start",
+    "supabase:status": "supabase status"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
     "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.104.0",
     "drizzle-orm": "^0.45.2",

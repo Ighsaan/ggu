@@ -1,59 +1,90 @@
 .hero {
   display: grid;
-  grid-template-columns: 1.06fr 0.94fr;
+  grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  gap: 0.8rem;
+  gap: 0;
   height: 100%;
-  padding: 1.35rem 1.6rem;
-  background: #121212;
+  padding: 0;
+  background: #282828;
   color: #f7f1e8;
 }
 
 .copyBlock {
-  display: grid;
-  align-content: center;
-  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
 }
 
 .title {
-  max-width: 13rem;
-  font-size: clamp(2.6rem, 5.8vw, 4.3rem);
-  line-height: 0.84;
-  letter-spacing: -0.07em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.title span {
+  display: block;
+  font-family: var(--font-display);
 }
 
 .subtitle {
-  max-width: 18rem;
-  color: #f0c759;
+  color: #F7EA2F;
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .voteButton {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   width: fit-content;
   min-height: 2.9rem;
-  padding-inline: 1.3rem;
-  border-radius: 999px !important;
-  background: #2f76ff !important;
-  color: #f5f8ff !important;
-  border: 1px solid #2f76ff !important;
+  padding: 0.55rem 1.4rem !important;
+  border-radius: 15px !important;
+  background: #1b75ba !important;
+  color: #ffffff !important;
+  border: 1px solid #1b75ba !important;
   letter-spacing: 0.08em;
+  font-weight: 700;
 }
 
 .voteButton:hover {
-  background: #2569ed !important;
+  background: #16639e !important;
+  border-color: #16639e !important;
+}
+
+.voteIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
 }
 
 .imageWrap {
   position: relative;
   overflow: hidden;
-  background: #1d1d1f;
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  height: 100%;
 }
 
 .image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: auto;
+  max-width: 500px;
   object-fit: contain;
+  object-position: bottom center;
 }
 
 @media (max-width: 900px) {
@@ -63,7 +94,5 @@
 
   .imageWrap {
     min-height: 15rem;
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 }

@@ -1,0 +1,171 @@
+.page {
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background: #f4f2ee;
+}
+
+.shell {
+  display: grid;
+  grid-template-rows: 7vh 1fr 7vh;
+  min-height: 100dvh;
+}
+
+.topBarSlot {
+  min-height: 0;
+}
+
+.body {
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  background: #282828;
+}
+
+.card {
+  width: min(100%, 40rem);
+  padding: 2rem;
+  border-radius: 20px;
+  background: #f4f2ee;
+  color: #282828;
+  display: grid;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1;
+}
+
+.subtitle {
+  margin: 0;
+  color: #4a4d52;
+  font-size: 0.98rem;
+}
+
+.group {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.groupTitle {
+  margin: 0 0 0.2rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.settingRow input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #1b75ba;
+}
+
+.hint {
+  margin: 0.2rem 0 0;
+  color: #5a5f68;
+  font-size: 0.78rem;
+}
+
+.accountRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.accountRow strong {
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.accountActions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.accountActions form {
+  display: flex;
+}
+
+.accountActions form > * {
+  width: 100%;
+}
+
+.primaryAction,
+.ghostAction,
+.ghostLink {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  width: 100%;
+  border-radius: 15px !important;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.primaryAction {
+  background: #1b75ba !important;
+  color: #ffffff !important;
+  border: 1px solid #1b75ba !important;
+}
+
+.primaryAction:hover {
+  background: #16639e !important;
+  border-color: #16639e !important;
+}
+
+.ghostAction,
+.ghostLink {
+  background: transparent !important;
+  color: #282828 !important;
+  border: 1px solid rgba(40, 40, 40, 0.24) !important;
+}
+
+.ghostAction:hover,
+.ghostLink:hover {
+  background: rgba(40, 40, 40, 0.07) !important;
+}
+
+.footerSlot {
+  min-height: 0;
+  background: #282828;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .card {
+    padding: 1.4rem 1rem;
+  }
+
+  .accountRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .accountActions {
+    grid-template-columns: 1fr;
+  }
+}

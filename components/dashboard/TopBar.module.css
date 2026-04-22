@@ -5,7 +5,7 @@
   gap: 1rem;
   height: 100%;
   padding: 0 1.4rem;
-  background: #dad7d2;
+  background: #282828;
 }
 
 .searchWrap {
@@ -13,17 +13,17 @@
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
-  min-height: 2.85rem;
+  max-width: 20rem;
+  min-height: 2rem;
   padding: 0 1rem;
   border-radius: 999px;
-  background: #f3f0eb;
-  border: 1px solid rgba(17, 18, 20, 0.06);
+  background: #ffffff;
 }
 
 .searchIcon {
   width: 0.95rem;
   height: 0.95rem;
-  border: 2px solid #71757c;
+  border: 2px solid #282828;
   border-radius: 999px;
   position: relative;
   flex-shrink: 0;
@@ -37,7 +37,7 @@
   width: 0.46rem;
   height: 2px;
   border-radius: 999px;
-  background: #71757c;
+  background: #282828;
   transform: rotate(45deg);
 }
 
@@ -46,56 +46,170 @@
   min-width: 0;
   border: 0;
   background: transparent;
-  color: #141518;
+  color: #282828;
   outline: none;
   font-size: 0.92rem;
 }
 
 .searchInput::placeholder {
-  color: #7d8188;
+  color: #282828;
 }
 
 .actions {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
+  position: relative;
 }
 
 .authButton {
-  min-height: 2.85rem;
+  min-height: 2rem;
   padding-inline: 1.25rem;
   border-radius: 999px !important;
-  background: #131313 !important;
-  color: #f4f0ea !important;
-  border: 1px solid #131313 !important;
+  background: #ffffff !important;
+  color: #282828 !important;
+  border: 1px solid #ffffff !important;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
 }
 
 .authButton:hover {
-  background: #1b1b1c !important;
+  background: #282828 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+}
+
+.authButtonSignedIn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 16rem;
+  min-height: 2.4rem;
+  padding: 0.35rem 0.95rem 0.35rem 0.4rem !important;
+  border-radius: 999px !important;
+  background: #1b75ba !important;
+  color: #ffffff !important;
+  border: 1px solid #1b75ba !important;
+  letter-spacing: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.authButtonSignedIn:hover {
+  background: #16639e !important;
+  border-color: #16639e !important;
+  color: #ffffff !important;
+}
+
+.userAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.userAvatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.userAvatarFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.userName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu {
+  position: relative;
 }
 
 .menuButton {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.26rem;
+  align-items: center;
+  gap: 0.4rem;
   width: 2.85rem;
-  height: 2.85rem;
+  height: 3rem;
   padding: 0 0.7rem;
   border: 0;
-  border-radius: 999px;
-  background: #f3f0eb;
+  background: #282828;
   cursor: pointer;
+  list-style: none;
+}
+
+.menuButton::-webkit-details-marker {
+  display: none;
 }
 
 .menuButton span {
   display: block;
   width: 100%;
-  height: 2px;
-  border-radius: 999px;
-  background: #111214;
+  height: 4px;
+  background: #ffffff;
+}
+
+.menuPanel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 30;
+  min-width: 12rem;
+  padding: 0.45rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #1f1f20;
+  display: grid;
+  gap: 0.25rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.menuItem,
+.menuItemButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 2.1rem;
+  padding: 0.45rem 0.65rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #f7f1e8;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.menuItemButton {
+  cursor: pointer;
+}
+
+.menuItem:hover,
+.menuItemButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menuForm {
+  display: contents;
 }
 
 @media (max-width: 900px) {
@@ -107,5 +221,10 @@
 
   .actions {
     justify-content: space-between;
+  }
+
+  .menuPanel {
+    right: auto;
+    left: 0;
   }
 }

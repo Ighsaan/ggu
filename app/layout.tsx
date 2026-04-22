@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Quicksand, Ubuntu } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,13 +12,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "GGU",
     template: "%s | GGU",
   },
   description:
-    "A minimal Next.js app with Supabase Google auth, a public dashboard, and Drizzle-backed user syncing.",
+    "Global Gamers Union",
 };
 
 export default function RootLayout({
@@ -27,7 +42,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${quicksand.variable} ${ubuntu.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

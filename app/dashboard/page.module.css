@@ -6,49 +6,47 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #f4f2ee;
+  background: #ffffff;
 }
 
 .shell {
   display: grid;
   grid-template-rows:
-    minmax(4.15rem, 0.72fr)
-    minmax(15.5rem, 2fr)
-    2.9rem
-    minmax(7.8rem, 0.95fr)
-    2.9rem
-    minmax(8.8rem, 1.1fr)
-    minmax(4.1rem, 0.65fr);
+    7vh   /* top bar     */
+    40vh  /* hero        */
+    6vh   /* banner      */
+    17vh  /* carousel    */
+    6vh   /* banner      */
+    17vh  /* carousel lg */
+    7vh;  /* footer      */
   gap: 0;
   height: 100%;
   padding: 0;
-  background: #f4f2ee;
+  background: #ffffff;
 }
 
 .topBarSlot,
 .heroSlot,
 .bannerSlot,
 .carouselSlot,
-.carouselSlotLarge,
 .footerSlot {
   min-height: 0;
 }
 
 .heroSlot {
-  background: #121212;
+  background: #282828;
 }
 
 .bannerSlot {
-  background: #dbd8d4;
+  background: #ffffff;
 }
 
-.carouselSlot,
-.carouselSlotLarge {
-  background: #f4f2ee;
+.carouselSlot {
+  background: #ffffff;
 }
 
 .footerSlot {
-  background: #121212;
+  background: #282828;
 }
 
 @media (max-width: 900px) {

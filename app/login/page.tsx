@@ -1,8 +1,11 @@
+import { Brand } from "@/components/dashboard/Brand";
+import { FooterBar } from "@/components/dashboard/FooterBar";
 import { Button } from "@/components/ui/Button";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { signInWithGoogleAction, signOutAction } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
+import { signInWithGoogleAction } from "@/lib/actions/auth";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { getSessionUser, getUserDisplayName } from "@/lib/supabase/user";
+import { getSessionUser } from "@/lib/supabase/user";
 import styles from "./page.module.css";
 
 type LoginPageProps = {
@@ -13,73 +16,94 @@ type LoginPageProps = {
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const user = await getSessionUser();
+  if (user) {
+    redirect("/dashboard");
+  }
   const { error } = await searchParams;
   const supabaseConfigured = isSupabaseConfigured();
-  const displayName = user ? getUserDisplayName(user) : null;
 
   return (
     <main className={styles.page}>
-      <section className={styles.panel}>
-        <p className={styles.eyebrow}>GGU</p>
-        <h1 className={styles.title}>Login</h1>
-        <p className={styles.description}>
-          Simple auth entry point for the current build. Use Google to create a
-          session and continue straight to the dashboard.
-        </p>
+      <section className={styles.shell}>
+        <header className={styles.bar}>
+          <Brand />
+        </header>
 
-        <div className={styles.statusStack}>
-          <p
-            className={`${styles.state} ${user ? styles.success : styles.neutral}`}
-          >
-            {user ? `Signed in as ${displayName}.` : "You are not signed in."}
-          </p>
+        <div className={styles.body}>
+          <section className={styles.card}>
+            <h1 className={styles.title}>
+              <span>WELCOME TO</span>
+              <span>GGU!!!</span>
+            </h1>
+            <p className={styles.subtitle}>Sign in to cast your vote</p>
 
-          {error ? (
-            <p className={`${styles.state} ${styles.warning}`}>{error}</p>
-          ) : null}
+            {(error || !supabaseConfigured) && (
+              <div className={styles.statusStack}>
+                {error ? (
+                  <p className={`${styles.state} ${styles.warning}`}>{error}</p>
+                ) : null}
 
-          {!supabaseConfigured ? (
-            <p className={`${styles.state} ${styles.warning}`}>
-              Supabase env is missing. Add <code>NEXT_PUBLIC_SUPABASE_URL</code>{" "}
-              and <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> before using login.
-            </p>
-          ) : null}
+                {!supabaseConfigured ? (
+                  <p className={`${styles.state} ${styles.warning}`}>
+                    Supabase env is missing. Add{" "}
+                    <code>NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
+                    <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> before using
+                    login.
+                  </p>
+                ) : null}
+              </div>
+            )}
+
+            <div className={styles.actions}>
+              {supabaseConfigured ? (
+                <>
+                  <form className={styles.form} action={signInWithGoogleAction}>
+                    <input type="hidden" name="next" value="/dashboard" />
+                    <Button type="submit" className={styles.primaryButton}>
+                      <GoogleGlyph />
+                      <span>CONTINUE WITH GOOGLE</span>
+                    </Button>
+                  </form>
+                  <ButtonLink
+                    href="/dashboard"
+                    variant="subtle"
+                    className={styles.ghostButton}
+                  >
+                    VIEW DASHBOARD
+                  </ButtonLink>
+                </>
+              ) : (
+                <ButtonLink
+                  href="/dashboard"
+                  variant="subtle"
+                  className={styles.ghostButton}
+                >
+                  VIEW DASHBOARD
+                </ButtonLink>
+              )}
+            </div>
+          </section>
         </div>
 
-        <div className={styles.actions}>
-          {user ? (
-            <>
-              <ButtonLink href="/dashboard">Open dashboard</ButtonLink>
-              <form className={styles.form} action={signOutAction}>
-                <Button type="submit" variant="secondary">
-                  Sign out
-                </Button>
-              </form>
-            </>
-          ) : supabaseConfigured ? (
-            <form className={styles.form} action={signInWithGoogleAction}>
-              <input type="hidden" name="next" value="/dashboard" />
-              <Button type="submit">Continue with Google</Button>
-            </form>
-          ) : null}
-
-          <ButtonLink href="/dashboard" variant="subtle">
-            View dashboard
-          </ButtonLink>
+        <div className={styles.footerSlot}>
+          <FooterBar />
         </div>
-      </section>
-
-      <section className={styles.panel}>
-        <h2 className={styles.sectionTitle}>Current scope</h2>
-        <ul className={styles.list}>
-          <li>Only two user-facing pages: login and dashboard.</li>
-          <li>The dashboard stays public and always shows auth status.</li>
-          <li>
-            Successful sign-ins create or update a row in{" "}
-            <code>public.users</code>.
-          </li>
-        </ul>
       </section>
     </main>
+  );
+}
+
+function GoogleGlyph() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={styles.buttonIcon}
+      aria-hidden="true"
+    >
+      <path
+        fill="#ffffff"
+        d="M21.35 11.1h-9.2v2.9h5.28c-.23 1.44-1.66 4.22-5.28 4.22-3.18 0-5.77-2.63-5.77-5.87s2.59-5.87 5.77-5.87c1.81 0 3.02.77 3.71 1.43l2.53-2.44C16.86 3.82 14.75 3 12.15 3 6.98 3 2.83 7.15 2.83 12.35S6.98 21.7 12.15 21.7c7.02 0 9.37-4.92 9.37-8.64 0-.58-.06-1.03-.17-1.96z"
+      />
+    </svg>
   );
 }

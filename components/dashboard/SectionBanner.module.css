@@ -3,13 +3,14 @@
   place-items: center;
   height: 100%;
   padding: 0 1rem;
-  background: #dbd8d4;
+  background: #DBDBDB;
 }
 
 .title {
-  color: #111214;
+  color: #282828;
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-align: center;
+  font-family: var(--font-sans);
 }

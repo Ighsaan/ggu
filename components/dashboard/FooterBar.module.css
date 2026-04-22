@@ -5,18 +5,22 @@
   gap: 1.4rem;
   height: 100%;
   padding: 0 1.4rem;
-  background: #121212;
+  background: #282828;
 }
 
 .links {
-  display: inline-flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 1.4rem;
-  color: #ece7df;
-  font-size: 0.76rem;
+  width: 100%;
+  color: #ffffff;
+  font-size: 1.5rem;
   font-weight: 600;
+}
+
+.links > * {
+  text-align: center;
 }
 
 @media (max-width: 900px) {
@@ -28,6 +32,12 @@
   }
 
   .links {
-    justify-content: start;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    font-size: 0.95rem;
+  }
+
+  .links > * {
+    text-align: start;
   }
 }

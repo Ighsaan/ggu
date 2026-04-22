@@ -6,22 +6,33 @@ export function HeroBanner() {
   return (
     <section className={styles.hero}>
       <div className={styles.copyBlock}>
-        <h1 className={styles.title}>LET THE DEVS KNOW!!!</h1>
+        <h1 className={styles.title}>
+          <span>LET THE DEVS</span>
+          <span>KNOW!!!</span>
+        </h1>
         <p className={styles.subtitle}>
           Vote for change in your favourite game
         </p>
         <ButtonLink href="/login" className={styles.voteButton}>
-          Vote now
+          <svg
+            className={styles.voteIcon}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
+          </svg>
+          <span>VOTE NOW</span>
         </ButtonLink>
       </div>
 
       <div className={styles.imageWrap}>
         <Image
-          src="/placeholders/game-hero-poster.svg"
-          alt="Hero placeholder"
-          fill
+          src="/megaphone.svg"
+          alt="Megaphone"
+          width={654}
+          height={444}
           priority
-          sizes="(max-width: 900px) 100vw, 42vw"
           className={styles.image}
         />
       </div>

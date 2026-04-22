@@ -10,6 +10,10 @@
   --accent-strong: #1d4ed8;
   --success: #15803d;
   --warning: #b45309;
+
+  --font-sans: var(--font-quicksand), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-ubuntu), var(--font-quicksand), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 * {
@@ -37,7 +41,7 @@ body {
       transparent 28%
     ),
     linear-gradient(180deg, var(--background) 0%, var(--background-strong) 100%);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -66,7 +70,7 @@ main {
 
 code,
 pre {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-mono);
 }
 
 ::selection {

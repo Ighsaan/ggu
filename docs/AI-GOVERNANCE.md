@@ -3,6 +3,23 @@
 This project allows AI-assisted development, but human owners remain accountable
 for product decisions, security, privacy, and releases.
 
+## Project scope and purpose
+
+GGU is a gaming-focused web application where users can sign in with Google and
+engage with a curated dashboard experience that highlights games and invites
+community feedback/voting.
+
+Current production-aligned scope:
+
+- `/login` handles sign-in and user entry flow.
+- `/dashboard` is the primary product surface and is built from reusable sections
+  such as top navigation, hero messaging, game carousels, and footer actions.
+- Authenticated users are synced into `public.users` through the Supabase +
+  Drizzle data layer.
+
+Any AI-generated change that substantially alters this scope should be treated
+as a product or architecture proposal and require explicit human approval.
+
 ## Governance principles
 
 1. **Human authority** — humans approve scope, architecture, and production release decisions.
@@ -10,6 +27,31 @@ for product decisions, security, privacy, and releases.
 3. **Small safe changes** — prefer narrow, reviewable increments over large speculative rewrites.
 4. **Security first** — never commit secrets, tokens, private keys, or environment-specific credentials.
 5. **Traceable quality** — lint, type-check, and build validation are the baseline gates for changes.
+6. **Standards alignment** — implementation decisions must align with project coding and design standards.
+
+## Coding standards baseline
+
+AI contributions must follow `docs/CODING-STANDARDS.md` and these non-negotiable
+expectations:
+
+- Keep TypeScript strict; avoid `any`, broad escape hatches, and unsafe assertions unless documented.
+- Use Next.js App Router conventions and default to Server Components; add `"use client"` only when browser-side interactivity is required.
+- Prefer reusable components over large one-off route JSX blocks.
+- Keep server-side code security-sensitive: validate inputs, narrow outputs, and protect secrets.
+- Use CSS Modules for local styles; keep global CSS limited to tokens, resets, and app-wide primitives.
+- Maintain accessibility through semantic HTML, keyboard-friendly behavior, and readable contrast.
+
+## Design standards baseline
+
+AI-generated UI changes should preserve the current GGU visual and interaction
+language unless a human explicitly requests a redesign:
+
+- Keep the gaming-oriented, high-contrast identity used across `/login` and `/dashboard`.
+- Preserve clear section hierarchy (top bar, hero, banners, carousels, footer) and avoid collapsing distinct content blocks into generic layouts.
+- Reuse shared UI primitives and existing dashboard components before introducing new visual patterns.
+- Maintain consistent spacing, typography roles (display vs body), and button treatments.
+- Favor responsive behavior that preserves readability and interaction clarity on small screens.
+- Keep imagery, iconography, and call-to-action wording aligned with the existing GGU product tone.
 
 ## Deployment target
 
@@ -32,14 +74,15 @@ The current application baseline assumes:
 - **Drizzle ORM + migrations** for schema management, and
 - **Vercel** for web hosting and deployment.
 
-Changes that alter these foundations should be treated as architectural changes and reviewed carefully.
+Changes that alter these foundations should be treated as architectural changes
+and reviewed carefully.
 
 ## Change risk levels
 
 | Level  | Examples                                                                                                              | Policy                                                                       |
 | ------ | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Low    | copy updates, styling, layout polish, docs, small UI components                                                       | AI may implement directly; human review required before merge                |
-| Medium | dependency changes, route changes, application state, config updates, data flow changes                               | AI may draft and implement, but human review is required with extra scrutiny |
+| Low    | copy updates, visual polish within established patterns, docs, small UI component refinements                        | AI may implement directly; human review required before merge                |
+| Medium | dependency changes, route-level layout changes, data flow updates, component contract changes                         | AI may draft and implement, but human review is required with extra scrutiny |
 | High   | auth, payments, user data handling, telemetry, secret management, destructive operations, deployment or infra changes | human approval required before implementation and again before merge/release |
 
 ## Mandatory guardrails
@@ -69,8 +112,8 @@ Changes that alter these foundations should be treated as architectural changes 
 
 ## Required workflow for AI-assisted changes
 
-1. Understand the task and relevant repo docs.
-2. Make the smallest viable change.
+1. Understand the task and relevant repo docs (`README.md`, this file, and `docs/CODING-STANDARDS.md` at minimum).
+2. Make the smallest viable change aligned with project scope and design language.
 3. Run validation commands when relevant.
 4. Document behavior and standards changes.
 5. Leave a clear summary for human review.
@@ -79,9 +122,11 @@ Changes that alter these foundations should be treated as architectural changes 
 
 Before merging AI-assisted work, a human reviewer should confirm:
 
-- the change matches the intended scope,
+- the change still aligns with the current GGU product scope,
+- coding standards were followed,
+- design standards were preserved or intentionally updated,
 - no secrets or unsafe patterns were introduced,
-- the implementation is readable and maintainable,
+- implementation is readable and maintainable,
 - lint, type-check, and build pass,
 - Vercel deployment expectations are still respected,
 - Supabase auth and RLS expectations are still respected, and

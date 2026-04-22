@@ -1,59 +1,6 @@
-.wrap,
-.compactWrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.78rem;
-}
-
-.mark,
-.compactMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: #131313;
-  color: #f5f1ea;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.mark {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.85rem;
-  font-size: 0.72rem;
-}
-
-.compactMark {
-  width: 2.55rem;
-  height: 2.55rem;
-  border-radius: 0.75rem;
-  font-size: 0.66rem;
-}
-
-.textBlock,
-.textBlockInverse {
-  display: grid;
-  gap: 0.08rem;
-  line-height: 1;
-}
-
-.textBlock {
-  color: #101113;
-}
-
-.textBlockInverse {
-  color: #f2eee8;
-}
-
-.title {
-  font-size: 0.92rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.subtitle {
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+.logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 1.75rem;
 }

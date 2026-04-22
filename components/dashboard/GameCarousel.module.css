@@ -5,60 +5,64 @@
   gap: 0.85rem;
   height: 100%;
   padding: 0.85rem 1rem;
-  background: #f4f2ee;
+  background: #ffffff;
 }
 
 .arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.45rem;
-  height: 2.45rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0 auto;
   border: 0;
   border-radius: 999px;
-  background: #e5e0da;
-  color: #131416;
-  font-size: 1.35rem;
+  background: #ffffff;
+  color: #282828;
+  font-size: 3rem;
   line-height: 1;
   cursor: pointer;
 }
 
 .items,
 .itemsDense {
-  display: grid;
+  display: flex;
   align-items: start;
   gap: 0.7rem;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
 }
 
-.items {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.itemsDense {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.items::-webkit-scrollbar,
+.itemsDense::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
   display: grid;
   justify-items: center;
   gap: 0.4rem;
+  flex: 0 0 150px;
+  width: 150px;
+  scroll-snap-align: start;
 }
 
 .imageWrap,
 .imageWrapDense {
   position: relative;
   overflow: hidden;
-  width: 100%;
   background: #ffffff;
-  border: 1px solid rgba(17, 18, 20, 0.06);
 }
 
 .imageWrap {
+  width: 6rem;
   height: 4.8rem;
 }
 
 .imageWrapDense {
+  width: 6rem;
   height: 4rem;
 }
 
@@ -68,7 +72,7 @@
 }
 
 .label {
-  color: #141518;
+  color: #282828;
   font-size: 0.68rem;
   font-weight: 600;
   text-align: center;
@@ -78,10 +82,5 @@
 @media (max-width: 900px) {
   .carousel {
     grid-template-columns: 2.6rem minmax(0, 1fr) 2.6rem;
-  }
-
-  .items,
-  .itemsDense {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

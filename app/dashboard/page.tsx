@@ -8,53 +8,59 @@ import { SectionBanner } from "@/components/dashboard/SectionBanner";
 import { TopBar } from "@/components/dashboard/TopBar";
 import { isDatabaseConfigured } from "@/db";
 import { syncAppUserFromAuth } from "@/lib/data/users";
-import { getSessionUser } from "@/lib/supabase/user";
+import {
+  getSessionUser,
+  getUserAvatarUrl,
+  getUserDisplayName,
+} from "@/lib/supabase/user";
 import styles from "./page.module.css";
 
 const recentlyVisitedGames: readonly GameCarouselItem[] = [
   {
     title: "Apex Legends",
-    image: "/placeholders/game-card-legends.svg",
+    image: "/games/apex-legends.png",
   },
   {
     title: "Overwatch 2",
-    image: "/placeholders/game-card-overwatch.svg",
+    image: "/games/overwatch-2.png",
   },
   {
     title: "Arc Raiders",
-    image: "/placeholders/game-card-arc-raiders.svg",
+    image: "/games/arc-raiders.png",
   },
 ];
 
 const trendingGames: readonly GameCarouselItem[] = [
   {
     title: "Apex Legends",
-    image: "/placeholders/game-card-legends.svg",
+    image: "/games/apex-legends.png",
   },
   {
     title: "Overwatch 2",
-    image: "/placeholders/game-card-overwatch.svg",
+    image: "/games/overwatch-2.png",
   },
   {
     title: "Dota 2",
-    image: "/placeholders/game-card-dota.svg",
+    image: "/games/dota-2.png",
   },
   {
     title: "Arc Raiders",
-    image: "/placeholders/game-card-arc-raiders.svg",
+    image: "/games/arc-raiders.png",
   },
   {
     title: "Call of Duty Warzone",
-    image: "/placeholders/game-card-warzone.svg",
+    image: "/games/warzone.png",
   },
   {
     title: "Battlefield 6",
-    image: "/placeholders/game-card-battlefield.svg",
+    image: "/games/battlefield-6.png",
   },
 ];
 
 export default async function DashboardPage() {
   const user = await getSessionUser();
+  const userName = user ? getUserDisplayName(user) : null;
+  const userAvatarUrl = user ? getUserAvatarUrl(user) : null;
   const databaseConfigured = isDatabaseConfigured();
 
   if (user && databaseConfigured) {
@@ -69,7 +75,7 @@ export default async function DashboardPage() {
     <main className={styles.page}>
       <section className={styles.shell}>
         <div className={styles.topBarSlot}>
-          <TopBar />
+          <TopBar userName={userName} userAvatarUrl={userAvatarUrl} />
         </div>
 
         <div className={styles.heroSlot}>
@@ -88,8 +94,8 @@ export default async function DashboardPage() {
           <SectionBanner title="Top trending games" />
         </div>
 
-        <div className={styles.carouselSlotLarge}>
-          <GameCarousel items={trendingGames} dense />
+        <div className={styles.carouselSlot}>
+          <GameCarousel items={trendingGames} />
         </div>
 
         <div className={styles.footerSlot}>
